@@ -1,0 +1,8 @@
+{
+  "bitwise_equal": true,
+  "expected_sha256": "d806e1c520668a3dc7bdfdb64f7957e349a218145e6c257dc2c2a355dfcdd0e6",
+  "max_abs_difference": 0.0,
+  "replay_sha256": "d806e1c520668a3dc7bdfdb64f7957e349a218145e6c257dc2c2a355dfcdd0e6",
+  "start_step": 6,
+  "target_step": 12
+}

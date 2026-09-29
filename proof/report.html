@@ -1,0 +1,278 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Feature Genesis Smoke Report</title>
+<style>
+body { font-family: Inter, system-ui, sans-serif; max-width: 1180px; margin: 0 auto; padding: 40px 24px; background: #f5f6f8; color: #16181d; }
+h1 { font-size: 42px; margin: 0 0 28px; }
+section { background: white; border: 1px solid #dfe3ea; border-radius: 14px; padding: 24px; margin: 18px 0; box-shadow: 0 3px 16px rgba(0,0,0,.04); }
+h2 { margin-top: 0; }
+pre { white-space: pre-wrap; word-break: break-word; background: #11151c; color: #e8edf5; padding: 18px; border-radius: 10px; overflow: auto; }
+</style>
+</head>
+<body>
+<h1>Feature Genesis Smoke Report</h1>
+<section><h2>Deterministic replay</h2><pre>{
+  &quot;bitwise_equal&quot;: true,
+  &quot;expected_sha256&quot;: &quot;d806e1c520668a3dc7bdfdb64f7957e349a218145e6c257dc2c2a355dfcdd0e6&quot;,
+  &quot;max_abs_difference&quot;: 0.0,
+  &quot;replay_sha256&quot;: &quot;d806e1c520668a3dc7bdfdb64f7957e349a218145e6c257dc2c2a355dfcdd0e6&quot;,
+  &quot;start_step&quot;: 6,
+  &quot;target_step&quot;: 12
+}</pre></section><section><h2>SAE benchmark</h2><pre>[
+  {
+    &quot;inference_calibration&quot;: {
+      &quot;realized_l0&quot;: 4.0,
+      &quot;rows&quot;: 256,
+      &quot;target_l0&quot;: 4,
+      &quot;threshold&quot;: 1.6526055335998535
+    },
+    &quot;kind&quot;: &quot;cosine_batch_topk&quot;,
+    &quot;last_training_row&quot;: {
+      &quot;auxiliary_loss&quot;: 0.03054528497159481,
+      &quot;dead_features&quot;: 44.0,
+      &quot;l0&quot;: 4.0,
+      &quot;learning_rate&quot;: 0.0001045803511535803,
+      &quot;loss&quot;: 1.005916714668274,
+      &quot;reconstruction_loss&quot;: 0.9753714799880981,
+      &quot;step&quot;: 24.0,
+      &quot;temporal_loss&quot;: 0.0
+    },
+    &quot;metrics&quot;: {
+      &quot;activation_max&quot;: 5.445470809936523,
+      &quot;activation_mean_when_active&quot;: 1.9804681539535522,
+      &quot;dead_fraction&quot;: 0.34375,
+      &quot;fraction_variance_explained&quot;: 0.011260332674400408,
+      &quot;frequency_max&quot;: 0.41015625,
+      &quot;frequency_mean&quot;: 0.03125,
+      &quot;frequency_median&quot;: 0.0078125,
+      &quot;mean_l0&quot;: 4.0,
+      &quot;mse&quot;: 0.67137560993433,
+      &quot;mutual_coherence&quot;: 0.4530397951602936,
+      &quot;nmse&quot;: 0.8576450750654585,
+      &quot;rows&quot;: 256
+    },
+    &quot;model_step&quot;: 12,
+    &quot;path&quot;: &quot;runs/smoke/saes/model_step_00000012/cosine_batch_topk/final.pt&quot;,
+    &quot;training_steps&quot;: 24
+  },
+  {
+    &quot;inference_calibration&quot;: null,
+    &quot;kind&quot;: &quot;jumprelu&quot;,
+    &quot;last_training_row&quot;: {
+      &quot;auxiliary_loss&quot;: 0.003921875264495611,
+      &quot;dead_features&quot;: 77.0,
+      &quot;l0&quot;: 3.921875,
+      &quot;learning_rate&quot;: 0.0001045803511535803,
+      &quot;loss&quot;: 0.39988964796066284,
+      &quot;reconstruction_loss&quot;: 0.3959677815437317,
+      &quot;step&quot;: 24.0,
+      &quot;temporal_loss&quot;: 0.0
+    },
+    &quot;metrics&quot;: {
+      &quot;activation_max&quot;: 7.825071811676025,
+      &quot;activation_mean_when_active&quot;: 2.2776379585266113,
+      &quot;dead_fraction&quot;: 0.6015625,
+      &quot;fraction_variance_explained&quot;: 0.5364486653401106,
+      &quot;frequency_max&quot;: 0.22265625,
+      &quot;frequency_mean&quot;: 0.030303955078125,
+      &quot;frequency_median&quot;: 0.0,
+      &quot;mean_l0&quot;: 3.87890625,
+      &quot;mse&quot;: 0.31476137787103653,
+      &quot;mutual_coherence&quot;: 0.43961265683174133,
+      &quot;nmse&quot;: 0.4020901884986819,
+      &quot;rows&quot;: 256
+    },
+    &quot;model_step&quot;: 12,
+    &quot;path&quot;: &quot;runs/smoke/saes/model_step_00000012/jumprelu/final.pt&quot;,
+    &quot;training_steps&quot;: 24
+  },
+  {
+    &quot;inference_calibration&quot;: {
+      &quot;realized_l0&quot;: 4.0,
+      &quot;rows&quot;: 256,
+      &quot;target_l0&quot;: 4,
+      &quot;threshold&quot;: 1.3768631219863892
+    },
+    &quot;kind&quot;: &quot;matryoshka&quot;,
+    &quot;last_training_row&quot;: {
+      &quot;auxiliary_loss&quot;: 0.009568987414240837,
+      &quot;dead_features&quot;: 69.0,
+      &quot;l0&quot;: 4.0,
+      &quot;learning_rate&quot;: 0.0001045803511535803,
+      &quot;loss&quot;: 0.5231962203979492,
+      &quot;reconstruction_loss&quot;: 0.5136272311210632,
+      &quot;step&quot;: 24.0,
+      &quot;temporal_loss&quot;: 0.0
+    },
+    &quot;metrics&quot;: {
+      &quot;activation_max&quot;: 7.965961456298828,
+      &quot;activation_mean_when_active&quot;: 2.102778673171997,
+      &quot;dead_fraction&quot;: 0.5546875,
+      &quot;fraction_variance_explained&quot;: 0.5370306479805032,
+      &quot;frequency_max&quot;: 0.2265625,
+      &quot;frequency_mean&quot;: 0.03125,
+      &quot;frequency_median&quot;: 0.0,
+      &quot;mean_l0&quot;: 4.0,
+      &quot;mse&quot;: 0.3143661990761757,
+      &quot;mutual_coherence&quot;: 0.443690687417984,
+      &quot;nmse&quot;: 0.4015853695237777,
+      &quot;rows&quot;: 256
+    },
+    &quot;model_step&quot;: 12,
+    &quot;path&quot;: &quot;runs/smoke/saes/model_step_00000012/matryoshka/final.pt&quot;,
+    &quot;training_steps&quot;: 24
+  },
+  {
+    &quot;inference_calibration&quot;: null,
+    &quot;kind&quot;: &quot;matching_pursuit&quot;,
+    &quot;last_training_row&quot;: {
+      &quot;auxiliary_loss&quot;: 0.0,
+      &quot;dead_features&quot;: 62.0,
+      &quot;l0&quot;: 4.0,
+      &quot;learning_rate&quot;: 0.0001045803511535803,
+      &quot;loss&quot;: 0.6810166835784912,
+      &quot;reconstruction_loss&quot;: 0.6810166835784912,
+      &quot;step&quot;: 24.0,
+      &quot;temporal_loss&quot;: 0.0
+    },
+    &quot;metrics&quot;: {
+      &quot;activation_max&quot;: 10.733089447021484,
+      &quot;activation_mean_when_active&quot;: 1.592397689819336,
+      &quot;dead_fraction&quot;: 0.484375,
+      &quot;fraction_variance_explained&quot;: 0.45154842549281904,
+      &quot;frequency_max&quot;: 0.71484375,
+      &quot;frequency_mean&quot;: 0.03125,
+      &quot;frequency_median&quot;: 0.00390625,
+      &quot;mean_l0&quot;: 4.0,
+      &quot;mse&quot;: 0.37241047620773315,
+      &quot;mutual_coherence&quot;: 0.4534260630607605,
+      &quot;nmse&quot;: 0.4757337116455361,
+      &quot;rows&quot;: 256
+    },
+    &quot;model_step&quot;: 12,
+    &quot;path&quot;: &quot;runs/smoke/saes/model_step_00000012/matching_pursuit/final.pt&quot;,
+    &quot;training_steps&quot;: 24
+  }
+]</pre></section><section><h2>Lineage</h2><pre>{
+  &quot;alignment_residual_ratio&quot;: 0.048721382802337926,
+  &quot;births&quot;: 3,
+  &quot;continues&quot;: 46,
+  &quot;deaths&quot;: 18,
+  &quot;merges&quot;: 50,
+  &quot;splits&quot;: 45
+}</pre></section><section><h2>Concept evaluation</h2><pre>{
+  &quot;concept_count&quot;: 13,
+  &quot;concept_coverage_ap_0_5&quot;: 0.6923076923076923,
+  &quot;feature_best_ap&quot;: [
+    0.6588834524154663,
+    0.6041690111160278,
+    0.6999861598014832,
+    0.7036656141281128,
+    0.5832743048667908,
+    0.6461606621742249,
+    0.7052083611488342,
+    0.5888401865959167,
+    0.6475221514701843,
+    0.7084527611732483,
+    0.8050000071525574,
+    0.8378081321716309,
+    0.6332004070281982,
+    0.5455173850059509,
+    0.6633174419403076,
+    0.6806336641311646,
+    0.5832858681678772,
+    0.7074999809265137,
+    0.7904166579246521,
+    0.7593749761581421,
+    0.6633591651916504,
+    0.793749988079071,
+    0.7250000238418579,
+    0.7325193881988525,
+    0.6353961825370789,
+    0.7039473652839661,
+    0.7250000238418579,
+    0.694776713848114,
+    0.6257587671279907,
+    0.6831250190734863,
+    0.6470577716827393,
+    0.6669408082962036
+  ],
+  &quot;feature_best_concept&quot;: [
+    6,
+    12,
+    6,
+    6,
+    4,
+    6,
+    6,
+    6,
+    6,
+    6,
+    5,
+    4,
+    6,
+    4,
+    5,
+    5,
+    6,
+    5,
+    4,
+    4,
+    5,
+    4,
+    4,
+    3,
+    12,
+    3,
+    4,
+    3,
+    6,
+    5,
+    3,
+    3
+  ],
+  &quot;mean_best_ap&quot;: 0.5756342376525034,
+  &quot;mean_normalized_ap_gain&quot;: 0.30638521465363266
+}</pre></section><section><h2>Feature coalition evaluation</h2><pre>{
+  &quot;concept_count&quot;: 13,
+  &quot;coverage_test_f1_0_5&quot;: 0.5384615384615384,
+  &quot;mean_test_f1&quot;: 0.5227294590250057,
+  &quot;median_test_f1&quot;: 0.5
+}</pre></section><section><h2>SAE model-level fidelity</h2><pre>{
+  &quot;accuracy_change&quot;: 0.0,
+  &quot;baseline_accuracy&quot;: 0.375,
+  &quot;baseline_loss&quot;: 1.7552515665690105,
+  &quot;delta_task_loss&quot;: 0.165854811668396,
+  &quot;images&quot;: 24,
+  &quot;loss_recovered&quot;: 0.6231461231715845,
+  &quot;mean_kl_baseline_to_reconstruction&quot;: 0.018926126261552174,
+  &quot;mean_logit_mse&quot;: 0.32495606938997906,
+  &quot;reconstructed_accuracy&quot;: 0.375,
+  &quot;reconstructed_loss&quot;: 1.9211063782374065,
+  &quot;zero_ablation_accuracy&quot;: 0.125,
+  &quot;zero_ablation_loss&quot;: 2.1953553358713784
+}</pre></section><section><h2>Counterfactual replay</h2><pre>{
+  &quot;baseline_feature_score&quot;: 5.138158321380615,
+  &quot;baseline_model_sha256&quot;: &quot;d806e1c520668a3dc7bdfdb64f7957e349a218145e6c257dc2c2a355dfcdd0e6&quot;,
+  &quot;counterfactual_feature_score&quot;: 5.158915042877197,
+  &quot;counterfactual_model_sha256&quot;: &quot;842b69e8cb178778c990f792e8396f6ee534ef2815d890ef18dc460ba93f95bc&quot;,
+  &quot;end_step&quot;: 12,
+  &quot;feature_id&quot;: 75,
+  &quot;feature_score_change&quot;: 0.02075672149658203,
+  &quot;image_intervention&quot;: null,
+  &quot;masked_dataset_indices&quot;: [
+    83
+  ],
+  &quot;masked_steps&quot;: [
+    6
+  ],
+  &quot;parameter_l2&quot;: 0.022226960000933115,
+  &quot;parameter_max_abs&quot;: 0.004396781325340271,
+  &quot;relative_feature_score_change&quot;: 0.004039720109481705,
+  &quot;start_step&quot;: 6
+}</pre></section>
+</body>
+</html>

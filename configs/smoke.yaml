@@ -1,0 +1,146 @@
+project:
+  name: feature_genesis_smoke
+  run_dir: runs/smoke
+  seed: 1729
+  device: cpu
+reproducibility:
+  strict: true
+  deterministic_algorithms: true
+  warn_only: false
+  allow_tf32: false
+  cudnn_benchmark: false
+  cpu_threads: 1
+  verify_environment: true
+data:
+  name: toy_shapes
+  root: data/toy_shapes
+  image_size: 32
+  batch_size: 16
+  eval_batch_size: 16
+  num_workers: 0
+  split_seed: 8191
+  validation_per_class: 0
+  bbox_margin: 0.0
+  train_scale_min: 1.0
+  train_scale_max: 1.0
+  horizontal_flip_probability: 0.0
+  color_jitter: 0.0
+  toy_train_count: 96
+  toy_test_count: 48
+model:
+  name: tiny_cnn
+  num_classes: 9
+  hook_layer: features.8
+  group_norm_groups: 8
+train:
+  epochs: 3
+  max_steps: 12
+  learning_rate: 0.03
+  min_learning_rate: 0.001
+  warmup_steps: 2
+  momentum: 0.9
+  weight_decay: 0.0001
+  label_smoothing: 0.0
+  anchor_every: 6
+  log_every: 2
+  analysis_steps: [0, 6, 12]
+  gradient_clip_norm: null
+activations:
+  split: train
+  max_images: 64
+  batch_size: 16
+  dtype: float32
+  flatten_spatial: true
+  cache_dir: activations
+  checkpoint_steps: [6, 12]
+  random_spatial_tokens_per_image: 4
+sae:
+  kind: batch_topk
+  expansion_factor: 2
+  dictionary_size: 128
+  k: 4
+  batch_size: 64
+  steps: 24
+  learning_rate: 0.001
+  min_learning_rate: 0.0001
+  warmup_steps: 2
+  weight_decay: 0.0
+  aux_weight: 0.03125
+  aux_k: 16
+  dead_steps: 8
+  matryoshka_prefixes: [32, 64, 128]
+  matryoshka_weights: [0.2, 0.3, 0.5]
+  temporal_weight: 0.001
+  cosine_per_feature: true
+  jump_sparsity_coefficient: 0.001
+  jump_initial_threshold: 0.1
+  jump_initial_l0: 4
+  jump_bandwidth: 0.05
+  jump_sparsity_warmup_steps: 8
+  threshold_ema: 0.9
+  mp_steps: 4
+  mp_residual_tolerance: 0.0
+  input_normalization: dataset_rms
+  initialization_samples: 256
+  checkpoint_every: 12
+  gradient_clip_norm: 1.0
+  artifact_version: v2_repaired
+  seeds: [0, 1]
+  primary_seed: 0
+  warm_start_mode: aligned_directions
+  warm_start_alignment_rows: 128
+  selection_fraction: 0.1
+  calibration_fraction: 0.1
+  evaluation_fraction: 0.1
+  minimum_fraction_variance_explained: -1.0
+  maximum_dead_fraction: 1.0
+  minimum_mean_l0_fraction: 0.25
+  maximum_mean_l0_fraction: 3.0
+  minimum_cross_seed_cosine: 0.0
+  minimum_cross_seed_match_fraction: 0.0
+lineage:
+  decoder_weight: 0.4
+  activation_weight: 0.35
+  concept_weight: 0.25
+  continue_threshold: 0.45
+  secondary_threshold: 0.35
+  split_mass_threshold: 0.8
+  death_frequency_threshold: 0.0
+  procrustes_samples: 256
+attribution:
+  feature_ids: []
+  target_steps: [12]
+  candidate_batches: 6
+  exact_replay_batches: 2
+  gradient_refresh_steps: 2
+  replay_start_step: 6
+  replay_end_step: 12
+  intervention: mask_loss
+  parameter_scope: hook_block
+  probe_images: 24
+evaluation:
+  top_examples: 8
+  max_features: 32
+  minimum_activations: 2
+  part_radius_fraction: 0.2
+  report_dir: reports
+  gemini_enabled: false
+  gemini_model: gemini-3.6-flash
+  gemini_thinking_level: MEDIUM
+  gemini_env_path: .env
+  gemini_prompt_version: feature-genesis-multimodal-v2
+  gemini_parallel_requests: 2
+  gemini_request_attempts: 2
+  gemini_timeout_seconds: 30
+  gemini_max_features: 4
+  gemini_feature_ids: []
+  gemini_maximum_image_frequency: 0.9
+  gemini_diversity_penalty: 0.15
+  gemini_top_positives: 4
+  gemini_borderline_positives: 2
+  gemini_hard_negatives: 2
+  gemini_validation_positives: 2
+  gemini_validation_negatives: 2
+  gemini_minimum_validation_auc: 0.5
+  gemini_minimum_confidence: 0.5
+  gemini_minimum_positive_fit: 0.5

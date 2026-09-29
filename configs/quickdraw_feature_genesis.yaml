@@ -1,0 +1,163 @@
+project:
+  name: feature_genesis_quickdraw_v3
+  run_dir: F:/QuickDraw/feature_genesis_runs/quickdraw_cnn_seed1729_v3
+  seed: 1729
+  device: cuda
+reproducibility:
+  strict: true
+  deterministic_algorithms: true
+  warn_only: false
+  allow_tf32: false
+  cudnn_benchmark: false
+  cpu_threads: 1
+  verify_environment: true
+data:
+  name: quickdraw
+  root: F:/QuickDraw
+  image_size: 64
+  batch_size: 256
+  eval_batch_size: 256
+  num_workers: 4
+  split_seed: 8191
+  validation_per_class: 0
+  bbox_margin: 0.0
+  train_scale_min: 1.0
+  train_scale_max: 1.0
+  horizontal_flip_probability: 0.0
+  color_jitter: 0.0
+  quickdraw_train_limit: 0
+  quickdraw_validation_limit: 0
+  quickdraw_test_limit: 0
+  quickdraw_rotation_degrees: 10.0
+  quickdraw_translation_fraction: 0.08
+  quickdraw_scale_min: 0.9
+  quickdraw_scale_max: 1.1
+model:
+  name: quickdraw_cnn
+  num_classes: 345
+  hook_layer: block2
+  group_norm_groups: 16
+train:
+  epochs: 3
+  max_steps: 20000
+  learning_rate: 0.04
+  min_learning_rate: 0.00001
+  warmup_steps: 400
+  momentum: 0.9
+  weight_decay: 0.0005
+  label_smoothing: 0.05
+  anchor_every: 800
+  log_every: 20
+  analysis_steps: [0, 25, 50, 100, 200, 400, 800, 1600, 3200, 6400, 10000, 15000, 20000]
+  gradient_clip_norm: null
+activations:
+  split: train
+  evaluation_split: validation
+  max_images: 24000
+  evaluation_max_images: 24000
+  batch_size: 256
+  dtype: float16
+  flatten_spatial: true
+  cache_dir: activations
+  checkpoint_steps: [0, 25, 50, 100, 200, 400, 800, 1600, 3200, 6400, 10000, 15000, 20000]
+  random_spatial_tokens_per_image: 96
+sae:
+  kind: batch_topk
+  expansion_factor: 16
+  dictionary_size: 2048
+  k: 8
+  batch_size: 8192
+  steps: 3500
+  learning_rate: 0.0003
+  min_learning_rate: 0.00001
+  warmup_steps: 200
+  weight_decay: 0.0
+  aux_weight: 0.03125
+  aux_k: 128
+  dead_steps: 200
+  matryoshka_prefixes: [128, 512, 2048]
+  matryoshka_weights: [0.2, 0.3, 0.5]
+  temporal_weight: 0.002
+  cosine_per_feature: true
+  jump_sparsity_coefficient: 0.001
+  jump_initial_threshold: 0.1
+  jump_initial_l0: 8
+  jump_bandwidth: 0.05
+  jump_sparsity_warmup_steps: 500
+  threshold_ema: 0.99
+  mp_steps: 8
+  mp_residual_tolerance: 0.0
+  input_normalization: dataset_rms
+  initialization_samples: 32768
+  checkpoint_every: 500
+  gradient_clip_norm: 1.0
+  artifact_version: v3_visual
+  seeds: [0, 1, 2]
+  primary_seed: 0
+  warm_start_mode: aligned_directions
+  warm_start_alignment_rows: 50000
+  selection_fraction: 0.1
+  calibration_fraction: 0.05
+  evaluation_fraction: 0.1
+  minimum_fraction_variance_explained: 0.8
+  maximum_dead_fraction: 0.25
+  minimum_mean_l0_fraction: 0.5
+  maximum_mean_l0_fraction: 2.0
+  minimum_cross_seed_cosine: 0.5
+  minimum_cross_seed_match_fraction: 0.1
+lineage:
+  decoder_weight: 0.45
+  activation_weight: 0.45
+  concept_weight: 0.1
+  continue_threshold: 0.74
+  secondary_threshold: 0.58
+  split_mass_threshold: 1.15
+  death_frequency_threshold: 0.00001
+  procrustes_samples: 50000
+attribution:
+  feature_ids: []
+  target_steps: [20000]
+  candidate_batches: 24
+  exact_replay_batches: 8
+  gradient_refresh_steps: 25
+  replay_start_step: 15000
+  replay_end_step: 20000
+  intervention: mask_loss
+  parameter_scope: hook_block
+  probe_images: 512
+  directional_epsilon: 0.001
+  per_example_candidates: 8
+evaluation:
+  top_examples: 32
+  max_features: 1024
+  minimum_activations: 40
+  part_radius_fraction: 0.12
+  report_dir: reports
+  gemini_enabled: true
+  gemini_model: gemini-3.6-flash
+  gemini_thinking_level: MEDIUM
+  gemini_env_path: .env
+  gemini_prompt_version: feature-genesis-multimodal-v3
+  gemini_parallel_requests: 3
+  gemini_request_attempts: 6
+  gemini_timeout_seconds: 180
+  gemini_max_features: 48
+  gemini_feature_ids: []
+  gemini_maximum_image_frequency: 0.65
+  gemini_diversity_penalty: 0.2
+  gemini_top_positives: 8
+  gemini_borderline_positives: 4
+  gemini_hard_negatives: 6
+  gemini_validation_positives: 6
+  gemini_validation_negatives: 6
+  gemini_minimum_validation_auc: 0.75
+  gemini_minimum_confidence: 0.7
+  gemini_minimum_positive_fit: 0.65
+  gemini_activation_bins: 6
+  gemini_examples_per_bin: 2
+  gemini_max_examples_per_class: 2
+  gemini_max_modal_class_share: 0.5
+  gemini_minimum_effective_classes: 3.0
+  region_relative_threshold: 0.35
+  region_padding_fraction: 0.12
+  region_minimum_fraction: 0.12
