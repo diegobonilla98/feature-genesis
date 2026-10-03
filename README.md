@@ -68,11 +68,21 @@ The saved artifact validator passed its recorded checks for the SAE gate, held-o
 
 The later Circuit Genesis pilot gate also passed for features 89, 99, and 164. Its saved pilot graphs contain 65–66 nodes and 147–197 screened edges each, with all screened edge signs confirmed in the pilot. This is an early pilot, not a completed multi-seed circuit genealogy or a general claim about how neural features develop.
 
-![QuickDraw evidence for provisional feature 99: high-activation discovery drawings above and low or zero-activation controls below](docs/images/feature_00099_evidence.png)
+## Following one provisional feature through training
 
-The image is one reviewed example from the single QuickDraw run. Its label remains provisional and the contact sheet is qualitative evidence, not proof of a canonical feature meaning.
+Feature 99 is a useful example of the project's central question: when can a candidate feature be traced back through a model's training history, and when is the evidence too weak to call its origin? The saved v4 run follows a small enclosed-loop-like response from a connected structural precursor at step 6,593 to the final feature slot at step 21,975.
 
-The full checkpoints, caches, generated evidence, and per-feature dossiers live under `runs/` and are deliberately excluded from the public source repository. The small image above is retained to show the kind of evidence the pipeline inspects. The current evidence is limited to one QuickDraw model run and this dataset's drawing style; replication across model seeds, architectures, and domains remains necessary.
+[![Feature 99 genealogy across the saved QuickDraw training checkpoints](docs/media/feature-99/feature_99_genesis_timeline.png)](docs/media/feature-99/feature_99_genesis_timeline.mp4)
+
+[Play the 5-second timeline video](docs/media/feature-99/feature_99_genesis_timeline.mp4) · [View the animated GIF](docs/media/feature-99/feature_99_genesis_timeline.gif) · [Open the full-size figure](docs/media/feature-99/feature_99_genesis_timeline.png)
+
+The tracked lineage is `68 → 77 → 80 → 291 → 80 → 104 → 104 → 99` at steps `6,593 → 8,790 → 10,988 → 13,185 → 15,383 → 17,580 → 19,778 → 21,975`. The saved ancestry matcher records two merge edges along this trace. Feature alignment first passes its reliability gate at step 15,383; the dossier therefore marks semantic onset as **left-censored** between steps 6,593 and 15,383. The exact step when the visual concept became reliable is not identified by this run.
+
+The feature's manual label, “small enclosed loop attached to a stroke frame,” is provisional. Held-out semantic validation reached AUC 0.878, with 314 effective classes by activation mass. That is evidence against one-class memorization, not proof of a canonical feature meaning. The contact sheet below shows final-checkpoint positive discoveries beside low-activation controls; it is qualitative evidence from this one seed and QuickDraw's drawing style.
+
+[![Final-checkpoint positive discoveries and low-activation controls for provisional feature 99](docs/media/feature-99/feature_99_final_evidence.png)](docs/media/feature-99/feature_99_final_evidence.png)
+
+The existing final-checkpoint feature card is also available [as a full-size image](docs/images/feature_00099_evidence.png). The full checkpoints, caches, generated evidence, and per-feature dossiers live under `runs/` and remain excluded from the public source repository. Replication across model seeds, architectures, and domains is still needed.
 
 ## Immediate verification
 
@@ -191,3 +201,4 @@ The strongest publishable claim is not that a latent has a good natural-language
 ## License and data
 
 No `LICENSE` or `NOTICE.md` file is present, so the repository's code licensing status is unspecified. QuickDraw, CUB, and their annotations are not bundled; obtain each dataset separately and follow its original terms. The ignored local `data/` and `runs/` directories may contain large source data or derived research artifacts and are not part of the public source upload.
+
