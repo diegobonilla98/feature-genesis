@@ -202,3 +202,4 @@ The strongest publishable claim is not that a latent has a good natural-language
 
 No `LICENSE` or `NOTICE.md` file is present, so the repository's code licensing status is unspecified. QuickDraw, CUB, and their annotations are not bundled; obtain each dataset separately and follow its original terms. The ignored local `data/` and `runs/` directories may contain large source data or derived research artifacts and are not part of the public source upload.
 
+\n
